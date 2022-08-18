@@ -59,6 +59,40 @@ void Task56()
     Console.WriteLine($"Min sum digits = {minSum}; in {minRow} row");    
 }
 
+void MatrixMultiply()
+{
+    Random rand = new Random();
+    int rows = rand.Next(3, 5);
+    int columns = rand.Next(3, 5);
+    int[,] array = new int[rows, columns];
+    int[,] matrix = new int[rows, columns];
+    fillMatrix(array, rows, columns, 1, 5);
+    fillMatrix(matrix, rows, columns, 1, 5);
+    PrintMatrix(array);
+    PrintMatrix(matrix);
+    int row = array.GetLength(0);
+    int col = matrix.GetLength(1);
+    int[,] resMatrix = new int[row, col];
+
+    if (row == col)
+    {
+        for(int i = 0; i < row; i++)
+        {
+                        
+            for(int j = 0; j < col; j++)
+            {
+                for (int k = 0; k < col; k++)
+                {
+                    resMatrix[i, j]  += array[i, k] * matrix[k, j];
+                }
+            }
+        }
+        Console.WriteLine("Result matrix: ");
+        PrintMatrix(resMatrix);
+    }
+    else Console.WriteLine("Matrix can't multiply");
+}
+
 
 void fillMatrix(int[,] array, int row, int col, int start, int end)
 {
@@ -90,4 +124,6 @@ void PrintMatrix(int[,] matrix)
 }
 
 // Task54();
-Task56();
+// Task56();
+MatrixMultiply();
+
