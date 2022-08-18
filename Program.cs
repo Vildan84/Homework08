@@ -59,6 +59,36 @@ void Task56()
     Console.WriteLine($"Min sum digits = {minSum}; in {minRow} row");    
 }
 
+void FillSnail()
+{
+    int size = 4;
+    int[,] array = new int[size, size];
+
+    int row = 0;
+    int col = 0;
+    int dx = 1;
+    int dy = 0;
+    int dirChanges = 0;
+    int visits = size;
+
+    for (int i = 0; i < array.Length; i++) 
+    {
+        array[row, col] = i + 1;
+        if (--visits == 0) 
+        {
+            visits = size * (dirChanges %2) + size * ((dirChanges + 1) %2) - (dirChanges/2 - 1) - 2;
+            int temp = dx;
+            dx = -dy;
+            dy = temp;
+            dirChanges++;
+        }
+        col += dx;
+        row += dy;
+    }
+    PrintMatrix(array);
+}
+
+
 void MatrixMultiply()
 {
     Random rand = new Random();
@@ -125,5 +155,6 @@ void PrintMatrix(int[,] matrix)
 
 // Task54();
 // Task56();
-MatrixMultiply();
+// MatrixMultiply();
+FillSnail();
 
