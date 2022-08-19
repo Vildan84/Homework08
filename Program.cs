@@ -88,7 +88,6 @@ void FillSnail()
     PrintMatrix(array);
 }
 
-
 void MatrixMultiply()
 {
     Random rand = new Random();
@@ -123,6 +122,71 @@ void MatrixMultiply()
     else Console.WriteLine("Matrix can't multiply");
 }
 
+void Extra01()
+{
+    int rows = 5;
+    int columns = 5;
+    int[,] array = new int[rows, columns];
+    fillMatrix(array, rows, columns, 1, 10);
+    PrintMatrix(array);
+    int row = rows - 1;
+    int col = columns - 1;
+    int temp = 0;
+
+    for (int i = 1; i < rows; i++)
+    {
+        for (int j = 1; j < col; j++)
+        {
+            if (i == j)
+            {
+                array[0, j] = array[i, j];
+                array[row, col - j] = array[i, col - j];
+            }
+        }
+
+    }
+    temp = array[0, col];
+    array[0, col] = array[row, col];
+    array[row, col] = temp;
+    PrintMatrix(array);
+}
+
+void Extra02()
+{
+    int rows = 4;
+    int columns = 4;
+    int[,] array = new int[rows, columns];
+    fillMatrix(array, rows, columns, -9, 9);
+    PrintMatrix(array);
+    Dictionary<int, int> dict = new Dictionary<int, int>();
+        
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            if (dict.ContainsKey(array[i, j]))
+            {
+                dict[array[i, j]]++;
+            }
+            else
+            {
+                dict[array[i, j]] = 1;
+            }
+        }
+    }
+    PrintDictionary(dict);
+}
+
+
+
+void PrintDictionary(Dictionary<int, int> dict)
+{
+    foreach (KeyValuePair<int, int> kvp in dict)
+    {
+        Console.WriteLine("Key = {0}, Value = {1}",
+        kvp.Key, kvp.Value);
+    }
+}
 
 void fillMatrix(int[,] array, int row, int col, int start, int end)
 {
@@ -156,5 +220,7 @@ void PrintMatrix(int[,] matrix)
 // Task54();
 // Task56();
 // MatrixMultiply();
-FillSnail();
+// FillSnail();
+// Extra01();
+Extra02();
 
