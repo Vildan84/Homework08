@@ -177,7 +177,59 @@ void Extra02()
     PrintDictionary(dict);
 }
 
+void Extra03()
+{
+    int rows = 4;
+    int columns = 4;
+    int[,] array = new int[rows, columns];
+    fillMatrix(array, rows, columns, -9, 9);
+    PrintMatrix(array);
+    int minEl = array[0, 0];
+    int[] rowsWithMin = new int[rows];
+    int[] colWithMin = new int [columns];
 
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            if(Math.Abs(array[i, j]) < Math.Abs(minEl)) minEl = array[i, j];
+        }
+    }
+
+    Console.WriteLine($"Min element in array = {minEl}");
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            if(Math.Abs(array[i, j]) == Math.Abs(minEl))
+            {
+                Console.WriteLine($"In row: {i} and column: {j} min element"); 
+            }
+        }
+    }
+}
+
+void Extra04()
+{
+    int row = 4;
+    int col = 4;
+    int size = row * col;
+    int[,] array = new int[row, col];
+   
+    for (int j = 0; j < col; j++)
+    { 
+        for (int i = 0; i < row; i++)
+        {
+            if (j % 2 == 0) array [i, j] = j * row + i + 1;
+            else
+            {
+                array[i, j] = row * (j + 1) - i;
+            }
+        }   
+    }
+    PrintMatrix(array);
+}
 
 void PrintDictionary(Dictionary<int, int> dict)
 {
@@ -222,5 +274,7 @@ void PrintMatrix(int[,] matrix)
 // MatrixMultiply();
 // FillSnail();
 // Extra01();
-Extra02();
+// Extra02();
+// Extra03();
+Extra04();
 
